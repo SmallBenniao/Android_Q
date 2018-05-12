@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
+import com.example.pro.hehe.MainActivity;
 import com.example.pro.hehe.R;
 import com.example.pro.hehe.base.BaseFragment;
 
@@ -45,7 +46,8 @@ public class MyFragment extends BaseFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        setPadding(myLayout);
+        myLayout.setPadding(0,((MainActivity) getActivity()).getHeight2(),0,0);
+
     }
 
     @Override

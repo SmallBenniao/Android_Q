@@ -45,7 +45,12 @@ public class CategoryFragment extends BaseFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        setPadding(categoryLayout);
+    }
+
+
+    public void setPadding(int top){
+
+        categoryLayout.setPadding(0,top,0,0);
     }
 
     @Override

@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
+import com.example.pro.hehe.MainActivity;
 import com.example.pro.hehe.R;
 import com.example.pro.hehe.base.BaseFragment;
 
@@ -38,6 +39,7 @@ public class TopFragment extends BaseFragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_top, container, false);
         unbinder = ButterKnife.bind(this, view);
+
         return view;
     }
 
@@ -46,7 +48,7 @@ public class TopFragment extends BaseFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        setPadding(topLayout);
+        topLayout.setPadding(0,((MainActivity) getActivity()).getHeight2(),0,0);
     }
 
     @Override

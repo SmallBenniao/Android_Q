@@ -29,9 +29,7 @@
             android:id="@+id/tab_layout"
             android:layout_width="match_parent"
             android:layout_height="46dp"
-            app:tabIndicatorColor="@color/tab_selected_line_def"
-            app:tabSelectedTextColor="@color/tab_text_selected_def"
-            app:tabTextColor="@color/tab_text_normal_def"
+            app:tabIndicatorColor="@color/black_alpha_5"
             app:tabTextAppearance="@style/CustomTabLayoutTextAppearance"
             />
 

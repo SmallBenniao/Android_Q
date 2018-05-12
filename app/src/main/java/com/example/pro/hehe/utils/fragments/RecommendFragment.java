@@ -41,6 +41,8 @@ public class RecommendFragment extends BaseFragment {
     }
 
 
+
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);

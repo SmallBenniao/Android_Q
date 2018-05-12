@@ -8,10 +8,12 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 
 import com.example.pro.hehe.adapter.FixPagerAdapter;
 import com.example.pro.hehe.factory.FragmentFactory;
+import com.example.pro.hehe.utils.fragments.CategoryFragment;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -52,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
     //对fragment进行绑定
     private void intViewPagerFragment() {
 
+        if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.KITKAT) {
 
         statusBar.post(new Runnable() {
             @Override
@@ -66,12 +69,12 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.KITKAT) {
 
             //设置顶部状态栏 透明
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
 
+        tabLayout.setTabTextColors(getResources().getColor(R.color.black_alpha_5_1),getResources().getColor(R.color.black_alpha_5));
 
         fixPagerAdapter=new FixPagerAdapter(getSupportFragmentManager());
 
@@ -90,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
         //显示样式
         tabLayout.setTabMode(TabLayout.MODE_FIXED);
 
-
+        setHeight(getStatusBarHeight());
 
 
         mainViewpager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
@@ -104,13 +107,13 @@ public class MainActivity extends AppCompatActivity {
 
                     statusBar.setBackgroundColor(getResources().getColor(R.color.black_alpha_6));
                     tabLayout.setBackgroundColor(getResources().getColor(R.color.black_alpha_6));
-                    tabLayout.setTabTextColors(getResources().getColor(R.color.black_alpha_5),getResources().getColor(R.color.tab_text_normal_def));
+                    tabLayout.setTabTextColors(getResources().getColor(R.color.black_alpha_5_1),getResources().getColor(R.color.black_alpha_5));
 
                 }else{
 
                     statusBar.setBackgroundColor(getResources().getColor(R.color.colorAccent_3));
                     tabLayout.setBackgroundColor(getResources().getColor(R.color.colorAccent_2));
-                    tabLayout.setTabTextColors(getResources().getColor(R.color.colorAccent),getResources().getColor(R.color.tab_text_normal_def));
+                    tabLayout.setTabTextColors(getResources().getColor(R.color.colorAccent_3),getResources().getColor(R.color.black_alpha_5));
 
                 }
 
@@ -121,10 +124,27 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    int height2;
+
+    public void setHeight(final int top){
 
 
+        tabLayout.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                tabLayout.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                height2=tabLayout.getHeight()+top;
+                ((CategoryFragment)fragments.get(1)).setPadding(height2);
+
+            }
+        });
+
+    }
 
 
+    public int getHeight2() {
+        return height2;
+    }
 
     /**
      * 获取状态栏的高度
